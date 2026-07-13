@@ -297,7 +297,7 @@ setup_history()
 setup_autocomplete(commands,get_current_dir) 
 try:
  while True:
-    parts = shlex.split( input(f"{current_dir} >").strip().split() ) 
+    parts = shlex.split( input(f"{current_dir} >").strip() ) 
 
     if not parts:
         continue

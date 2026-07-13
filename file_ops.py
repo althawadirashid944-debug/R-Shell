@@ -3,6 +3,8 @@ from pathlib import Path
 import shutil 
 import sys 
 import subprocess 
+from autocomplete import setup_autocomplete
+from history import setup_history, save_history 
 RED = "\033[1;31m"
 RESET = "\033[0m"
 
@@ -134,7 +136,8 @@ def resolve_trash_conflict(path):
 
 
 
-
+def get_current_dir():
+    return current_dir
 
 
 current_dir= Path.home() 
@@ -143,7 +146,9 @@ def welcome_text():
 def show_banner():
     print(RED + big_r + RESET)
 def exit_program():
-   sys.exit()  
+   save_history() 
+   sys.exit() 
+
 def show_location():
     print(f"You are here: {current_dir}") 
 def list_files():
@@ -284,10 +289,12 @@ commands= {"pwd":show_location,
 }
 show_banner() 
 welcome_text() 
-subprocess.run(commands, shell=True)  
 
-while True:
-    parts = input(">").strip().split()
+setup_history() 
+setup_autocomplete(commands,get_current_dir) 
+try:
+ while True:
+    parts = input(f"{current_dir} >").strip().split() 
 
     if not parts:
         continue
@@ -302,7 +309,11 @@ while True:
             subprocess.run(parts) 
         except FileNotFoundError:
          print("Unknown command") 
-
+except KeyboardInterrupt:
+    print("\nUse 'exit' to quir R") 
+except EOFError:
+    save_history()
+    sys.exit() 
 
 
 

@@ -70,6 +70,13 @@ Run:
 ```bash
 python file_ops.py
 ```
+OR you could install it as a global command (still in works ) :
+```bash
+cd r_shell
+pip install .
+
+If `r-shell` is not found, add ~/.local/bin to your PATH:
+export PATH="$HOME/.local/bin:$PATH" 
 
 
 

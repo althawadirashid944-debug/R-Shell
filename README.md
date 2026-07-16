@@ -62,7 +62,7 @@ Clone the repository:
 
 ```bash
 git clone  https://github.com/althawadirashid944-debug/R-Shell.git 
-cd R
+cd R-Shell
 ```
 
 Run:
@@ -71,7 +71,8 @@ Run:
 python file_ops.py
 ```
 OR you could install it as a global command (still in works ) :
-```bash
+```bash 
+cd R-Shell
 cd r_shell
 pip install .
 
